@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
 
   if (req.method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Cookie, *');
+    res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
     return res.end();
   }
 
