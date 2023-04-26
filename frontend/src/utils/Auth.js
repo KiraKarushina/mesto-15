@@ -46,7 +46,7 @@ class Auth {
 }
 
 const auth = new Auth({
-    url: 'https://auth.nomoreparties.co',
+    url: 'https://backend.nomoredomains.monster',
     headers: {
         'Content-Type': 'application/json'
     }

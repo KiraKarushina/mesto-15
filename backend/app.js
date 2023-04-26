@@ -24,9 +24,7 @@ require('dotenv').config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
 app.use(cors);
-
 app.use(requestLogger);
 
 app.get('/crash-test', () => {
@@ -41,6 +39,7 @@ app.post('/signin', celebrate({
     password: Joi.string().required(),
   }),
 }), login);
+
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -75,4 +74,4 @@ app.listen(PORT, () => {
 });
 
 // подключаемся к серверу mongo
-mongoose.connect('mongodb://localhost:27017/mestodb', {});
+mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {});
