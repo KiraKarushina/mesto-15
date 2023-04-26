@@ -4,7 +4,6 @@ const UnauthorizedError = require('../customErrors/UnauthorizedError');
 
 module.exports = (req, res, next) => {
   if (!req.cookies.jwt) {
-    console.log('dai kuku bleat!');
     throw new UnauthorizedError();
   }
   const token = req.cookies.jwt;
