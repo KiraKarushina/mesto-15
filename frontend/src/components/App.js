@@ -99,7 +99,6 @@ function App() {
       .authorize(data)
       .then((data) => {
         setLoggedIn(true);
-        localStorage.setItem("jwt", data.token);
         navigate("/", { replace: true });
         handleCheckToken();
       })
@@ -111,9 +110,8 @@ function App() {
   }
 
   const handleCheckToken = () => {
-    const token = localStorage.getItem("jwt");
     auth
-      .checkToken(token)
+      .checkToken()
       .then((data) => {
         setUserEmail(data.data.email);
         setLoggedIn(true);
