@@ -129,6 +129,7 @@ module.exports.login = (req, res, next) => {
         maxAge: 36000000,
         httpOnly: true,
         domain: 'nomoredomains.monster',
+        sameSite: 'none',
         secure: true,
       }).send({ message: messages.ok });
     })
