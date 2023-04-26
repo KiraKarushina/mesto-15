@@ -34,7 +34,7 @@ class Auth {
         }).then(res => {return this.handleResponse(res)})
     };
 
-    checkToken(token) {
+    checkToken() {
         return fetch(`${this._url}/users/me`, {
             method: 'GET',
             credentials: 'include',
