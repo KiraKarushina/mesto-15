@@ -13,7 +13,7 @@ class Api {
   }
 
   getCards() {
-    return fetch(`${this._url}/${this._group}/cards`, {
+    return fetch(`${this._url}/cards`, {
       headers: {
         authorization: this._userID,
       },
@@ -24,7 +24,7 @@ class Api {
   }
 
   getProfile() {
-    return fetch(`${this._url}/${this._group}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       headers: {
         authorization: this._userID,
       },
@@ -35,7 +35,7 @@ class Api {
   }
 
   updateProfile({ name, about }) {
-    return fetch(`${this._url}/${this._group}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: this._userID,
@@ -52,7 +52,7 @@ class Api {
   }
 
   addCard({ name, link }) {
-    return fetch(`${this._url}/${this._group}/cards`, {
+    return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: {
         authorization: this._userID,
@@ -69,7 +69,7 @@ class Api {
   }
 
   deleteCard(id) {
-    return fetch(`${this._url}/${this._group}/cards/${id}`, {
+    return fetch(`${this._url}/cards/${id}`, {
       method: "DELETE",
       headers: {
         authorization: this._userID,
@@ -89,11 +89,8 @@ class Api {
   }
 
   addLike(id) {
-    return fetch(`${this._url}/${this._group}/cards/${id}/likes`, {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: "PUT",
-      headers: {
-        authorization: this._userID,
-      },
       credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
@@ -101,7 +98,7 @@ class Api {
   }
 
   deleteLike(id) {
-    return fetch(`${this._url}/${this._group}/cards/${id}/likes`, {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: "DELETE",
       headers: {
         authorization: this._userID,
@@ -113,7 +110,7 @@ class Api {
   }
 
   updateAvatar(link) {
-    return fetch(`${this._url}/${this._group}/users/me/avatar`, {
+    return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._userID,
