@@ -17,6 +17,7 @@ class Api {
       headers: {
         authorization: this._userID,
       },
+      credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
     });
@@ -27,6 +28,7 @@ class Api {
       headers: {
         authorization: this._userID,
       },
+      credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
     });
@@ -43,6 +45,7 @@ class Api {
         name: name,
         about: about,
       }),
+      credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
     });
@@ -59,6 +62,7 @@ class Api {
         name: name,
         link: link,
       }),
+      credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
     });
@@ -70,6 +74,7 @@ class Api {
       headers: {
         authorization: this._userID,
       },
+      credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
     });
@@ -89,6 +94,7 @@ class Api {
       headers: {
         authorization: this._userID,
       },
+      credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
     });
@@ -100,6 +106,7 @@ class Api {
       headers: {
         authorization: this._userID,
       },
+      credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
     });
@@ -115,6 +122,7 @@ class Api {
       body: JSON.stringify({
         avatar: link,
       }),
+      credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
     });
@@ -123,7 +131,7 @@ class Api {
 
 const api = new Api({
   userID: myID,
-  group: "cohort-55",
+  group: "",
   url: "https://backend.nomoredomains.monster",
 });
 
