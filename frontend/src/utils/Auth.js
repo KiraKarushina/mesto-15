@@ -37,9 +37,9 @@ class Auth {
     checkToken(token) {
         return fetch(`${this._url}/users/me`, {
             method: 'GET',
+            credentials: 'include',
             headers: {
                 ...this._headers,
-                Authorization: `Bearer ${token}`
             }
         }).then(res => {return this.handleResponse(res)})
     };
@@ -48,7 +48,7 @@ class Auth {
 const auth = new Auth({
     url: 'https://backend.nomoredomains.monster',
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
     }
 })
 

@@ -14,9 +14,6 @@ class Api {
 
   getCards() {
     return fetch(`${this._url}/cards`, {
-      headers: {
-        authorization: this._userID,
-      },
       credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
@@ -25,9 +22,6 @@ class Api {
 
   getProfile() {
     return fetch(`${this._url}/users/me`, {
-      headers: {
-        authorization: this._userID,
-      },
       credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
@@ -38,7 +32,6 @@ class Api {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: this._userID,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -55,7 +48,6 @@ class Api {
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: {
-        authorization: this._userID,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -71,9 +63,6 @@ class Api {
   deleteCard(id) {
     return fetch(`${this._url}/cards/${id}`, {
       method: "DELETE",
-      headers: {
-        authorization: this._userID,
-      },
       credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
@@ -100,9 +89,6 @@ class Api {
   deleteLike(id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: "DELETE",
-      headers: {
-        authorization: this._userID,
-      },
       credentials: 'include'
     }).then((response) => {
       return this._getResponseData(response);
@@ -113,7 +99,6 @@ class Api {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        authorization: this._userID,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
