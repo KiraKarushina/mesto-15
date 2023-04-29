@@ -49,18 +49,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    loadProfile()
+    loadProfile();
   }, []);
 
   useEffect(() => {
-    api
-      .getCards()
-      .then((res) => {
-        setCards(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    loadCards();
   }, []);
 
   //
@@ -72,6 +65,17 @@ function loadProfile() {
   .getProfile()
   .then((res) => {
     setCurrentUser(res.data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
+
+function loadCards() {
+  return api
+  .getCards()
+  .then((res) => {
+    setCards(res.data);
   })
   .catch((err) => {
     console.log(err);
@@ -181,7 +185,7 @@ function loadProfile() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i._id === currentUser._id || i === currentUser._id);
 
     api
       .changeLikeCardStatus(card._id, !isLiked)
