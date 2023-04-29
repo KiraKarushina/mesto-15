@@ -60,9 +60,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    Promise.all([api.getCards()])
-      .then(([cards]) => {
-        setCards(cards);
+    api
+      .getCards()
+      .then((res) => {
+        setCards(res.data);
       })
       .catch((err) => {
         console.log(err);

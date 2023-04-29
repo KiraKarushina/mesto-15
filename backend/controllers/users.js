@@ -130,7 +130,10 @@ module.exports.login = (req, res, next) => {
         httpOnly: true,
         sameSite: 'none',
         secure: true,
+<<<<<<< HEAD
         domain: 'backend.nomoredomains.monster',
+=======
+>>>>>>> 93747af99b75954ac60ae9f6b7b8f22ebdf0ce1b
       }).send({ message: messages.ok });
     })
     .catch(next);
