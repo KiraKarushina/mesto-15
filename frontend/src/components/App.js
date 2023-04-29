@@ -71,6 +71,7 @@ function loadProfile() {
   return api
   .getProfile()
   .then((res) => {
+
     setCurrentUser(res.data);
   })
   .catch((err) => {
@@ -132,7 +133,7 @@ function loadProfile() {
     api
       .addCard(card)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([newCard.data, ...cards]);
         closeAllPopups();
       })
       .catch((err) => {
@@ -144,7 +145,7 @@ function loadProfile() {
     api
       .updateAvatar(link)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -155,7 +156,7 @@ function loadProfile() {
     api
       .updateProfile(user)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.data);
         closeAllPopups();
       })
       .catch((err) => {
@@ -187,7 +188,7 @@ function loadProfile() {
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+          state.data.map((c) => (c._id === card._id ? newCard : c))
         );
       })
       .catch((err) => {
