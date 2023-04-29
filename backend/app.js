@@ -19,7 +19,7 @@ const mainRouter = require('./routes/index');
 const { PORT = 3000 } = process.env;
 
 const app = express();
-require('dotenv').config(); 
+require('dotenv').config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

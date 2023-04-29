@@ -11,7 +11,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import ProtectedRoute from "./ProtectedRoute";
-import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import InfoTooltip from "./InfoTooltip";
 import Register from "./Register";
 import Login from "./Login";
@@ -52,6 +52,7 @@ function App() {
     api
       .getProfile()
       .then((res) => {
+        console.log('settim eto v currenat user',res);
         setCurrentUser(res);
       })
       .catch((err) => {

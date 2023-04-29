@@ -24,6 +24,7 @@ class Api {
     return fetch(`${this._url}/users/me`, {
       credentials: 'include'
     }).then((response) => {
+      console.log('api.profile',response);
       return this._getResponseData(response.data);
     });
   }
