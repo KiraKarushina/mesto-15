@@ -3,7 +3,7 @@ import React from "react";
 
 export function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = React.useContext(CurrentUserContext);
-  console.log('a eto u nas v karte', currentUser, 'i karta', card)
+alert('a eto u nas v karte', currentUser, 'i karta', card)
   const isOwn = card.owner._id === currentUser._id;
   const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
