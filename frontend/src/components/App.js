@@ -52,7 +52,7 @@ function App() {
     api
       .getProfile()
       .then((res) => {
-        console.log('settim eto v currenat user',res);
+        alert('settim eto v currenat user',res);
         setCurrentUser(res);
       })
       .catch((err) => {
