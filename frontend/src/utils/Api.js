@@ -9,7 +9,11 @@ class Api {
     if (!res.ok) {
       return Promise.reject(`Ошибка: ${res.status}`);
     }
-    return res.json();
+
+    const text = res.json();
+
+    console.log('teeeeest', text);
+    return text;
   }
 
   getCards() {
@@ -25,7 +29,7 @@ class Api {
       credentials: 'include'
     }).then((response) => {
       console.log('api.profile',response);
-      return this._getResponseData(response.data);
+      return this._getResponseData(response);
     });
   }
 

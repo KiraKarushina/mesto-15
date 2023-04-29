@@ -32,7 +32,7 @@ module.exports.createUser = (req, res, next) => {
       .then((user) => {
         const dUser = user;
         dUser.password = undefined;
-        res.send({ data: dUser });
+        res.send({ dUser });
       })
       .catch((err) => {
         if (err.code === statusCodes.mongo) {
@@ -58,7 +58,7 @@ module.exports.getCurrentUser = (req, res, next) => User.findById(req.user._id)
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => {
-      res.send({ data: users });
+      res.send({ users });
     })
     .catch(next);
 };
@@ -67,7 +67,7 @@ module.exports.getUser = (req, res, next) => {
   User.findById(req.params.userId)
     .then((user) => {
       if (user) {
-        res.send({ data: user });
+        res.send({ user });
       } else {
         next(new NotFoundError());
       }
@@ -91,7 +91,7 @@ module.exports.updateProfile = (req, res, next) => {
     },
     { new: true, runValidators: true },
   )
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send({ user }))
     .catch((err) => {
       if (err.name === errorNames.validation || err.name === errorNames.cast) {
         next(new BadRequestError());
@@ -108,7 +108,7 @@ module.exports.updateAvatar = (req, res, next) => {
     { avatar },
     { new: true, runValidators: true },
   )
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send({ user }))
     .catch((err) => {
       if (err.name === errorNames.validation || err.name === errorNames.cast) {
         next(new BadRequestError());
