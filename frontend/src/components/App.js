@@ -71,8 +71,7 @@ function loadProfile() {
   return api
   .getProfile()
   .then((res) => {
-    console.log('settim eto v currenat user',res);
-    setCurrentUser(res);
+    setCurrentUser(res.data);
   })
   .catch((err) => {
     console.log(err);
