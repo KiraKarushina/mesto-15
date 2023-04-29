@@ -49,15 +49,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    api
-      .getProfile()
-      .then((res) => {
-        alert('settim eto v currenat user',res);
-        setCurrentUser(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    loadProfile()
   }, []);
 
   useEffect(() => {
@@ -74,6 +66,18 @@ function App() {
   //
   //functions
   //
+
+function loadProfile() {
+  return api
+  .getProfile()
+  .then((res) => {
+    console.log('settim eto v currenat user',res);
+    setCurrentUser(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
 
   function handleSingOut() {
     setLoggedIn(false);
@@ -118,6 +122,7 @@ function App() {
         setUserEmail(data.data.email);
         setLoggedIn(true);
         navigate("/", { replace: true });
+        loadProfile();
       })
       .catch((err) => {
         console.log(err);
