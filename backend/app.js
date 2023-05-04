@@ -1,15 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const { errors, celebrate, Joi } = require('celebrate');
-const { regular } = require('./utils/constants');
+const { errors } = require('celebrate');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-
-const statusCodes = require('./utils/statusCodes');
-const messages = require('./utils/messages');
-
-const { createUser, login } = require('./controllers/users');
+const globalErrorHandler = require('./middlewares/globalErrorHandler');
 
 const auth = require('./middlewares/auth');
 const cors = require('./middlewares/cors');
@@ -33,23 +28,6 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.post('/signin', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-}), login);
-
-app.post('/signup', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().pattern(regular),
-    name: Joi.string().min(2).max(30),
-  }),
-}), createUser);
-
 app.use(auth);
 
 app.use(mainRouter);
@@ -57,17 +35,7 @@ app.use(mainRouter);
 app.use(errorLogger);
 app.use(errors());
 
-app.use(
-  (err, req, res, next) => {
-    const {
-      statusCode = statusCodes.internal,
-      message = messages.internal,
-    } = err;
-
-    res.status(statusCode).send({ message });
-    next();
-  },
-);
+app.use(globalErrorHandler);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
