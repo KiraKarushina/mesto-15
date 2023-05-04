@@ -1,10 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const { errors } = require('celebrate');
+const { errors, celebrate, Joi } = require('celebrate');
+const { regular } = require('./utils/constants');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const globalErrorHandler = require('./middlewares/globalErrorHandler');
+const { createUser, login } = require('./controllers/users');
 
 const auth = require('./middlewares/auth');
 const cors = require('./middlewares/cors');
@@ -27,6 +29,23 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
+
+app.post('/signin', celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().email(),
+    password: Joi.string().required(),
+  }),
+}), login);
+
+app.post('/signup', celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().email(),
+    password: Joi.string().required(),
+    about: Joi.string().min(2).max(30),
+    avatar: Joi.string().pattern(regular),
+    name: Joi.string().min(2).max(30),
+  }),
+}), createUser);
 
 app.use(auth);
 
