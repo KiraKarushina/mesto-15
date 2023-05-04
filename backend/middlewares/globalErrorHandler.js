@@ -1,5 +1,5 @@
-const statusCodes = require('./utils/statusCodes');
-const messages = require('./utils/messages');
+const statusCodes = require('../utils/statusCodes');
+const messages = require('../utils/messages');
 
 module.exports.globalErrorHandler = (err, req, res, next) => {
         const {

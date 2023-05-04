@@ -54,7 +54,7 @@ app.use(mainRouter);
 app.use(errorLogger);
 app.use(errors());
 
-app.use(globalErrorHandler);
+// app.use(globalErrorHandler);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
